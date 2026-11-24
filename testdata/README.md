@@ -1,7 +1,7 @@
 # Scene fixture
 
 `two_nets.pex25d` is the hand-written fixture from
-[`klayout-pex-plugin-gmsh` at `f170951`](https://github.com/iic-jku/klayout-pex-plugin-gmsh/blob/f170951/testdata/two_nets.pex25d),
+[`kpex-plugin-gmsh` at `f170951`](https://github.com/iic-jku/kpex-plugin-gmsh/blob/f170951/testdata/two_nets.pex25d),
 under GPL-3.0-or-later.
 
 It contains two named nets, a floating conductor, a via, a ground plane and nested

@@ -1,6 +1,6 @@
 # Project conventions
 
-Follow the [KLayout-PEX conventions](https://github.com/iic-jku/klayout-pex/blob/main/AGENTS.md).
+Follow the [KPEX conventions](https://github.com/iic-jku/kpex/blob/main/AGENTS.md).
 
 - This repository prepares a `KQCircuits` exporter for partner development
 - Describe incomplete capabilities explicitly; registration does not mean export works
