@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Martin Jan Köhler and Harald Pretl
 # Johannes Kepler University, Institute for Integrated Circuits.
 #
-# This file is part of klayout-pex-plugin-kqcircuits
-# (see https://github.com/iic-jku/klayout-pex-plugin-kqcircuits).
+# This file is part of kpex-plugin-kqcircuits
+# (see https://github.com/iic-jku/kpex-plugin-kqcircuits).
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,11 +35,11 @@ import pytest
 
 if TYPE_CHECKING:
     from conftest import RunPython
-    from klayout_pex_protobuf.kpex.pex25d.pex25d_scene_pb2 import PEX25DScene
+    from kpex_protobuf.kpex.pex25d.pex25d_scene_pb2 import PEX25DScene
 
-from klayout_pex import pex25d
-from klayout_pex.plugin_api.v1 import ExportError, SceneCapability
-from klayout_pex_protobuf.kpex.pex25d import pex25d_capabilities_pb2
+from kpex import pex25d
+from kpex.plugin_api.v1 import ExportError, SceneCapability
+from kpex_protobuf.kpex.pex25d import pex25d_capabilities_pb2
 from klayout_pex_plugins.kqcircuits import KQCircuitsSceneExporter, create_exporter
 
 
@@ -47,17 +47,17 @@ def test_registered_factory_is_loadable():
     entry_points = [point for point in metadata.entry_points(group='klayout_pex.exporters.v1')
                     if point.name == 'kqcircuits']
     assert len(entry_points) == 1
-    assert entry_points[0].dist.name == 'klayout-pex-plugin-kqcircuits'
+    assert entry_points[0].dist.name == 'kpex-plugin-kqcircuits'
     assert isinstance(entry_points[0].load()(), KQCircuitsSceneExporter)
     assert isinstance(create_exporter(), KQCircuitsSceneExporter)
 
 
 @pytest.mark.parametrize('selector', [
-    'kqcircuits', 'klayout-pex-plugin-kqcircuits:kqcircuits',
+    'kqcircuits', 'kpex-plugin-kqcircuits:kqcircuits',
 ])
 def test_kpex_registry_loads_fresh_exporters(selector: str):
     registry = pex25d.exporter_registry()
-    assert registry.get_info(selector).distribution == 'klayout-pex-plugin-kqcircuits'
+    assert registry.get_info(selector).distribution == 'kpex-plugin-kqcircuits'
     first = registry.load(selector)
     assert isinstance(first, KQCircuitsSceneExporter)
     assert registry.load(selector) is not first
@@ -80,14 +80,14 @@ def test_export_reports_unimplemented_without_side_effects(scene: PEX25DScene,
 
 
 def test_cli_lists_the_installed_plugin(run_python: RunPython):
-    result = run_python(['-m', 'klayout_pex.pex25d', 'exporters'])
+    result = run_python(['-m', 'kpex.pex25d', 'exporters'])
     assert result.returncode == 0, result.stderr
-    assert 'klayout-pex-plugin-kqcircuits:kqcircuits' in result.stdout
+    assert 'kpex-plugin-kqcircuits:kqcircuits' in result.stdout
 
 
 def test_cli_reports_not_implemented(scene_path: Path, export_destination: Path, run_python: RunPython):
     result = run_python([
-        '-m', 'klayout_pex.pex25d', 'export', str(scene_path),
+        '-m', 'kpex.pex25d', 'export', str(scene_path),
         '--to', 'kqcircuits', '--out-dir', str(export_destination),
     ])
     output = result.stdout + result.stderr
@@ -106,11 +106,11 @@ import sys
 class NoBackends(importlib.abc.MetaPathFinder):
     def find_spec(self, fullname, path=None, target=None):
         if fullname.split('.')[0] in {
-                'klayout', 'pya', 'gmsh', 'kqcircuits', 'klayout_pex_protobuf', 'kpex'}:
+                'klayout', 'pya', 'gmsh', 'kqcircuits', 'kpex_protobuf'}:
             raise AssertionError('Unexpected optional import: ' + fullname)
 
 sys.meta_path.insert(0, NoBackends())
-from klayout_pex.pex25d import exporter_registry
+from kpex.pex25d import exporter_registry
 registry = exporter_registry()
 assert registry.get_info('kqcircuits').name == 'kqcircuits'
 assert callable(registry.load('kqcircuits').export)
@@ -183,7 +183,7 @@ def test_required_capabilities_are_rejected_without_side_effects(
     artifact = tmp_path / 'input.pex25d.scene.pb'
     artifact.write_bytes(before_scene)
     result = run_python([
-        '-m', 'klayout_pex.pex25d', 'export', str(artifact),
+        '-m', 'kpex.pex25d', 'export', str(artifact),
         '--to', 'kqcircuits', '--out-dir', str(export_destination),
     ])
     output = result.stdout + result.stderr

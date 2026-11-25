@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Martin Jan Köhler and Harald Pretl
 # Johannes Kepler University, Institute for Integrated Circuits.
 #
-# This file is part of klayout-pex-plugin-kqcircuits
-# (see https://github.com/iic-jku/klayout-pex-plugin-kqcircuits).
+# This file is part of kpex-plugin-kqcircuits
+# (see https://github.com/iic-jku/kpex-plugin-kqcircuits).
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any, List, Mapping, Optional
 
 if TYPE_CHECKING:
-    from klayout_pex_protobuf.kpex.pex25d.pex25d_scene_pb2 import PEX25DScene
+    from kpex_protobuf.kpex.pex25d.pex25d_scene_pb2 import PEX25DScene
 
 
 class KQCircuitsSceneExporter:
@@ -52,5 +52,5 @@ class KQCircuitsSceneExporter:
         """
         raise NotImplementedError(
             'KQCircuits export is not implemented yet. '
-            'klayout-pex-plugin-kqcircuits currently provides the development scaffold, '
+            'kpex-plugin-kqcircuits currently provides the development scaffold, '
             'not a working scene translator.')

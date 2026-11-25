@@ -3,8 +3,8 @@
 # SPDX-FileCopyrightText: 2026 Martin Jan Köhler and Harald Pretl
 # Johannes Kepler University, Institute for Integrated Circuits.
 #
-# This file is part of klayout-pex-plugin-kqcircuits
-# (see https://github.com/iic-jku/klayout-pex-plugin-kqcircuits).
+# This file is part of kpex-plugin-kqcircuits
+# (see https://github.com/iic-jku/kpex-plugin-kqcircuits).
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ from typing import TYPE_CHECKING, Callable, Iterator, List
 import pytest
 
 if TYPE_CHECKING:
-    from klayout_pex_protobuf.kpex.pex25d.pex25d_scene_pb2 import PEX25DScene
+    from kpex_protobuf.kpex.pex25d.pex25d_scene_pb2 import PEX25DScene
 
 RunPython = Callable[[List[str]], subprocess.CompletedProcess[str]]
 
@@ -46,7 +46,7 @@ def scene_path() -> Path:
 
 @pytest.fixture
 def scene(scene_path: Path) -> PEX25DScene:
-    from klayout_pex import pex25d
+    from kpex import pex25d
     return pex25d.resolve(pex25d.read(str(scene_path)))
 
 
@@ -84,6 +84,6 @@ def pytest_collection_modifyitems(items: List[pytest.Item]):
     for item in items:
         for label_type, value in (
                 ('parentSuite', 'Plugin Tests'),
-                ('suite', 'klayout-pex-plugin-kqcircuits'),
+                ('suite', 'kpex-plugin-kqcircuits'),
                 ('subSuite', item.module.__name__.rsplit('.', 1)[-1])):
             item.add_marker(pytest.mark.allure_label(value, label_type=label_type))

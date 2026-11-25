@@ -1,6 +1,6 @@
-# klayout-pex-plugin-kqcircuits
+# kpex-plugin-kqcircuits
 
-Development scaffold for exporting [KLayout-PEX](https://iic-jku.github.io/klayout-pex-website/)
+Development scaffold for exporting [KPEX](https://iic-jku.github.io/kpex-website/)
 `PEX25D` scenes through [KQCircuits](https://iqm-finland.github.io/KQCircuits/)
 to `Elmer`.
 
@@ -19,7 +19,7 @@ resolved PEX25D scene → KQCircuits simulation inputs → Gmsh/Elmer run
 
 The motivation is access to the `KQCircuits` simulation workflow, including its
 mesh-refinement controls. This is an alternative to the existing
-[`klayout-pex-plugin-elmer`](https://github.com/iic-jku/klayout-pex-plugin-elmer).
+[`kpex-plugin-elmer`](https://github.com/iic-jku/kpex-plugin-elmer).
 It does not depend on that plugin or copy its mesher.
 
 ## Install for development
@@ -31,7 +31,7 @@ poetry install
 poetry run pex25d exporters
 ```
 
-The exporter list includes `klayout-pex-plugin-kqcircuits:kqcircuits`.
+The exporter list includes `kpex-plugin-kqcircuits:kqcircuits`.
 Discovery and factory construction work without `KQCircuits`, `Gmsh` or `Elmer`
 installed. The scaffold does not declare a `KQCircuits` dependency until an actual
 adapter has been qualified against a specific version and installation method.
@@ -64,11 +64,16 @@ adapter implementation.
 level: it would interfere with sibling plugins. Only the `kqcircuits` child package
 belongs to this distribution.
 
+## Migration
+
+Moving from `klayout-pex-plugin-kqcircuits`? Install the renamed plugins in a fresh
+environment with `kpex>=0.12.0` to avoid registering the same exporters twice.
+
 ## Compatibility and licence
 
-- `klayout-pex>=0.9.0,<1`
+- `kpex>=0.12.0,<1`
 - Plugin API `v1` is provisional and may change before it is declared stable
-- GPL-3.0-or-later, matching the existing KPEX plugins; see [LICENSE](https://github.com/iic-jku/klayout-pex-plugin-kqcircuits/blob/main/LICENSE)
+- GPL-3.0-or-later, matching the existing KPEX plugins; see [LICENSE](https://github.com/iic-jku/kpex-plugin-kqcircuits/blob/main/LICENSE)
 
 ## Acknowledgements
 
@@ -80,20 +85,20 @@ Funded by the European Union. Views and opinions expressed are however those of 
 
 <p align="center">
   <a href="https://iic.jku.at" target="_blank">
-    <img src="https://github.com/iic-jku/klayout-pex-website/raw/main/figures/funding/iic-jku.svg" alt="Johannes Kepler University: Institute for Integrated Circuits and Quantum Computing" width="300"/>
+    <img src="https://github.com/iic-jku/kpex-website/raw/main/figures/funding/iic-jku.svg" alt="Johannes Kepler University: Institute for Integrated Circuits and Quantum Computing" width="300"/>
   </a>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="https://silicon-austria-labs.com" target="_blank">
-    <img src="https://github.com/iic-jku/klayout-pex-website/raw/main/figures/funding/silicon-austria-labs-logo.svg" alt="Silicon Austria Labs" width="300"/>
+    <img src="https://github.com/iic-jku/kpex-website/raw/main/figures/funding/silicon-austria-labs-logo.svg" alt="Silicon Austria Labs" width="300"/>
   </a>
 </p>
 
 <p align="center">
   <a href="https://ode4ec.eu/projects/ams/" target="_blank">
-    <img src="https://github.com/iic-jku/klayout-pex-website/raw/main/figures/funding/eu-cofunded.svg" alt="Co-funded by the European Union" width="300"/>
+    <img src="https://github.com/iic-jku/kpex-website/raw/main/figures/funding/eu-cofunded.svg" alt="Co-funded by the European Union" width="300"/>
   </a>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="https://www.chips-ju.europa.eu" target="_blank">
-    <img src="https://github.com/iic-jku/klayout-pex-website/raw/main/figures/funding/chips-ju.png" alt="Chips Joint Undertaking" width="300"/>
+    <img src="https://github.com/iic-jku/kpex-website/raw/main/figures/funding/chips-ju.png" alt="Chips Joint Undertaking" width="300"/>
   </a>
 </p>

@@ -1,7 +1,7 @@
 [project]
-name = "klayout-pex-plugin-kqcircuits"
-version = "0.1.1"
-description = "Development scaffold for exporting KLayout-PEX scenes through KQCircuits to Elmer"
+name = "kpex-plugin-kqcircuits"
+version = "0.3.0"
+description = "Development scaffold for exporting KPEX scenes through KQCircuits to Elmer"
 authors = [{ name = "Martin Köhler", email = "info@martinjankoehler.com" }]
 license = "GPL-3.0-or-later"
 readme = "README.md"
@@ -13,12 +13,12 @@ classifiers = [
     "Programming Language :: Python :: 3 :: Only",
     "Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)",
 ]
-dependencies = ["klayout-pex>=0.9.0,<1"]
+dependencies = ["kpex>=0.12.0,<1"]
 
 [project.urls]
-repository = "https://github.com/iic-jku/klayout-pex-plugin-kqcircuits"
-documentation = "https://github.com/iic-jku/klayout-pex-plugin-kqcircuits#readme"
-issues = "https://github.com/iic-jku/klayout-pex-plugin-kqcircuits/issues"
+repository = "https://github.com/iic-jku/kpex-plugin-kqcircuits"
+documentation = "https://github.com/iic-jku/kpex-plugin-kqcircuits#readme"
+issues = "https://github.com/iic-jku/kpex-plugin-kqcircuits/issues"
 
 [project.entry-points."klayout_pex.exporters.v1"]
 kqcircuits = "klayout_pex_plugins.kqcircuits:create_exporter"
